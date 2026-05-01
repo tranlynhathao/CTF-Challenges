@@ -1,0 +1,13 @@
+<section class="module">
+  <div class="module-head"><span class="lbl">SEALED_ENTRY</span><span class="ix">aes-gcm</span></div>
+  <div class="module-body">
+    {% if intro %}<p>{{ intro }}</p>{% endif %}
+    <dl class="kv">
+      <dt>scheme</dt><dd><code>AES-256-GCM</code></dd>
+      <dt>nonce</dt><dd><code>{{ env.nonce }}</code></dd>
+      <dt>aad</dt><dd><code>{{ env.aad }}</code></dd>
+      <dt>ciphertext</dt><dd><code>{{ env.ciphertext }}</code></dd>
+      <dt>tag</dt><dd><code>{{ env.tag }}</code></dd>
+    </dl>
+  </div>
+</section>

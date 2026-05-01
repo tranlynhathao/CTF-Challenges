@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Explorer · EggRoll Silent Orchard</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23f7f4ef'/%3E%3Crect x='2' y='2' width='4' height='4' fill='%23111'/%3E%3Crect x='10' y='2' width='4' height='4' fill='%23e11d48'/%3E%3Crect x='6' y='6' width='4' height='4' fill='%23111'/%3E%3Crect x='2' y='10' width='4' height='4' fill='%23e11d48'/%3E%3Crect x='10' y='10' width='4' height='4' fill='%23111'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body data-tcp-port="{{ tcp_port }}">
+  <div class="wrap">
+
+    <header class="topbar">
+      <a class="brand" href="/">
+        <span class="brand-mark" aria-hidden="true">
+          <span></span><span></span><span></span>
+          <span></span><span></span><span></span>
+          <span></span><span></span><span></span>
+        </span>
+        <span>EGGROLL.SILENT_ORCHARD</span>
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <a href="/">Landing</a>
+        <a href="/api/oracle">Oracle</a>
+        <a href="/api/blocks">Blocks</a>
+        <a href="/api/health">Health</a>
+      </nav>
+    </header>
+
+    <section class="hero" style="padding-top:36px; padding-bottom:8px;">
+      <p class="hero-prompt"><b>&gt;</b> EXPLORER PANEL READY<span class="blink">_</span></p>
+      <h1 style="font-size: clamp(1.8rem, 4.6vw, 3.2rem);">
+        Rollup <span class="accent">Explorer</span>
+      </h1>
+      <p class="hero-sub">
+        Surface map of the live oracle, vault gateway, and orchard claim console.
+        All endpoints below answer JSON; the TCP relay answers a small menu.
+      </p>
+    </section>
+
+    <section class="dash">
+      <div>
+        <div class="panel">
+          <h3><span class="dot"></span> Batch headers</h3>
+          <table class="batch-table">
+            <thead>
+              <tr><th>Height</th><th>Batch root</th><th>Validator quote</th><th>Grove</th></tr>
+            </thead>
+            <tbody>
+              {% for b in blocks %}
+              <tr>
+                <td class="mono">{{ b.height }}</td>
+                <td class="mono">{{ b.batchRoot[:18] }}…</td>
+                <td class="mono">{{ b.validatorQuoteId }}</td>
+                <td class="mono">{{ b.commitments.groveId }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <details class="preview">
+            <summary>raw GET /api/blocks (truncated)</summary>
+            <pre id="blocks-pre">loading…</pre>
+          </details>
+        </div>
+
+        <div class="panel" style="margin-top:18px;">
+          <h3><span class="dot"></span> Oracle surface</h3>
+          <dl class="kv">
+            <dt>endpoint</dt><dd><code>GET /api/oracle</code></dd>
+            <dt>contains</dt><dd>validator key, signed quotes, sealed note envelope, basket commitment, packed layout, finality envelope</dd>
+            <dt>format</dt><dd>application/json · canonical UTF-8</dd>
+          </dl>
+          <details class="preview">
+            <summary>raw GET /api/oracle (truncated)</summary>
+            <pre id="oracle-pre">loading…</pre>
+          </details>
+        </div>
+      </div>
+
+      <aside>
+        <div class="panel">
+          <h3><span class="dot"></span> Vault remote</h3>
+          <p style="margin:0 0 12px; color:#333; font-size:.92rem;">
+            TCP gateway. Menu offers banner, calldata submission, sealed note pointer, and a debug trace path that stays sealed by default.
+          </p>
+          <div class="term-card" style="box-shadow: 4px 4px 0 var(--pink); max-width:none;">
+            <div class="term-head">
+              <span>vault_relay</span>
+              <span class="term-dots" aria-hidden="true"><span></span><span></span><span></span></span>
+            </div>
+            <div class="term-line">
+              <span><span class="prompt">$</span> <span class="cmd" data-cmd="nc __HOST__ __TCP_PORT__">nc __HOST__ __TCP_PORT__</span></span>
+              <button class="copy" type="button">Copy</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel" style="margin-top:18px;">
+          <h3><span class="dot"></span> Submission consoles</h3>
+          <dl class="kv">
+            <dt>admin</dt><dd><code>POST /api/admin</code> · <span style="color:var(--muted);">body { token }</span></dd>
+            <dt>claim</dt><dd><code>POST /api/claim</code> · <span style="color:var(--muted);">body { bits }</span></dd>
+            <dt>health</dt><dd><code>GET /api/health</code></dd>
+          </dl>
+          <p style="margin:12px 0 0; color:var(--muted); font-size:.85rem; font-family:var(--font-mono);">
+            // tokens validated against published validator key
+          </p>
+        </div>
+
+        <div class="panel" style="margin-top:18px;">
+          <h3><span class="dot"></span> Status</h3>
+          <p style="margin:0 0 6px; font-family:var(--font-mono); font-size:13px;">
+            web · <span data-status>checking…</span>
+          </p>
+          <p style="margin:0; color:var(--muted); font-family:var(--font-mono); font-size:11px; letter-spacing:0.06em;">
+            tcp · standby until calldata arrives
+          </p>
+        </div>
+      </aside>
+    </section>
+
+    <footer class="foot">
+      <span><span class="pulse">●</span> EggRoll Silent Orchard · explorer</span>
+      <span>No source served · no secrets in public surface</span>
+      <span>v1 · <a href="/">landing</a></span>
+    </footer>
+  </div>
+
+  <script src="{{ url_for('static', filename='app.js') }}" defer></script>
+  <script>
+    // Inline preview loader: keep it tiny, only fetches public endpoints.
+    (function () {
+      function shorten(text, max) {
+        if (text.length <= max) return text;
+        return text.slice(0, max) + "\n… (truncated)";
+      }
+      function load(url, target) {
+        var el = document.getElementById(target);
+        if (!el) return;
+        fetch(url, { cache: "no-store" })
+          .then(function (r) { return r.text(); })
+          .then(function (t) {
+            try {
+              var pretty = JSON.stringify(JSON.parse(t), null, 2);
+              el.textContent = shorten(pretty, 4000);
+            } catch (e) {
+              el.textContent = shorten(t, 4000);
+            }
+          })
+          .catch(function () { el.textContent = "(unavailable)"; });
+      }
+      load("/api/blocks", "blocks-pre");
+      load("/api/oracle", "oracle-pre");
+    })();
+  </script>
+</body>
+</html>

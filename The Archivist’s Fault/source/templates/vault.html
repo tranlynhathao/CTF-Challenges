@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+<header class="page-head">
+  <div><span class="codename">GATE-R</span><h2 class="title">Inner Gate</h2></div>
+  <span class="meta">restricted access</span>
+</header>
+<section class="module">
+  <div class="module-head"><span class="lbl">PRESENT_SLIP</span><span class="ix">gate</span></div>
+  <div class="module-body">
+    <p>Present a sealed slip. The gate accepts only one canonical restricted slip; reading-room slips do not satisfy it.</p>
+    <form method="post">
+      <label class="k">sealed slip</label>
+      <textarea name="token" placeholder="b64u(canonical_json).b64u(seal)" required></textarea>
+      <div style="margin-top:1rem"><button class="btn" type="submit">Present Slip</button></div>
+    </form>
+  </div>
+</section>
+{% if state %}
+<section class="module">
+  <div class="module-head">
+    <span class="lbl">GATE_RESPONSE</span>
+    <span class="ix">{{ status_code }}</span>
+  </div>
+  <div class="module-body">
+    {% if state == "granted" %}
+      <div class="term-line">ACCESS GRANTED :: inner gate disengages</div>
+      <div class="granted">{{ main_flag }}</div>
+    {% else %}
+      <div class="deny">ACCESS DENIED</div>
+      {% if state == "missing" %}
+        <div class="term-line">no slip presented :: gate stays shut</div>
+      {% elif state == "unreadable" %}
+        <div class="term-line">unreadable slip :: {{ exc_message }}</div>
+      {% elif state == "bad_sig" %}
+        <div class="term-line">seal rejected :: signature does not match the master plate</div>
+      {% elif state == "wrong_scope" %}
+        <div class="term-line">seal accepted by a lower channel :: inner gate refuses this scope</div>
+        <div class="term-line muted">// the inner gate accepts only one canonical slip; its wording is not published here</div>
+      {% endif %}
+    {% endif %}
+  </div>
+</section>
+{% endif %}
+{% endblock %}

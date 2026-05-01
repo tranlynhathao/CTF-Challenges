@@ -1,0 +1,7 @@
+services:
+  archivists-fault:
+    build: .
+    ports:
+      - "18080:8080"
+      - "31337:31337"
+    restart: unless-stopped

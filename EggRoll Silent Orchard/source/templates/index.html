@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>EggRoll Silent Orchard</title>
+  <meta name="description" content="EggRoll Silent Orchard — rollup explorer, validator oracle, vault gateway, orchard allocation, and finality envelopes.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23f7f4ef'/%3E%3Crect x='2' y='2' width='4' height='4' fill='%23111'/%3E%3Crect x='10' y='2' width='4' height='4' fill='%23e11d48'/%3E%3Crect x='6' y='6' width='4' height='4' fill='%23111'/%3E%3Crect x='2' y='10' width='4' height='4' fill='%23e11d48'/%3E%3Crect x='10' y='10' width='4' height='4' fill='%23111'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body data-tcp-port="{{ tcp_port }}">
+  <div class="wrap">
+
+    <header class="topbar">
+      <a class="brand" href="/">
+        <span class="brand-mark" aria-hidden="true">
+          <span></span><span></span><span></span>
+          <span></span><span></span><span></span>
+          <span></span><span></span><span></span>
+        </span>
+        <span>EGGROLL.SILENT_ORCHARD</span>
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <a href="/explorer">Explorer</a>
+        <a href="/api/oracle">Oracle</a>
+        <a href="/api/blocks">Blocks</a>
+        <a href="/api/health">Health</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="pixel-cluster right" aria-hidden="true">
+        <span class="empty"></span><span class="empty"></span><span></span><span class="pink"></span><span class="empty"></span><span class="empty"></span>
+        <span class="empty"></span><span></span><span class="fill"></span><span class="pink-bright"></span><span></span><span class="empty"></span>
+        <span></span><span class="fill"></span><span class="pink"></span><span class="fill"></span><span class="pink-soft"></span><span></span>
+        <span></span><span class="pink-soft"></span><span class="fill"></span><span class="pink"></span><span class="fill"></span><span></span>
+        <span class="empty"></span><span></span><span class="pink-bright"></span><span class="fill"></span><span></span><span class="empty"></span>
+        <span class="empty"></span><span class="empty"></span><span class="pink"></span><span></span><span class="empty"></span><span class="empty"></span>
+      </div>
+
+      <p class="hero-prompt">
+        <b>&gt;</b> INITIALIZING ORCHARD SEQUENCE<span class="blink">_</span>
+      </p>
+      <h1>EggRoll<br>Silent <span class="accent">Orchard</span></h1>
+      <p class="hero-sub">
+        Rollup explorer, validator oracle, vault gateway, orchard allocation,
+        and finality envelopes. Five quiet surfaces for one noisy season.
+      </p>
+
+      <div class="cta-row">
+        <a class="btn pink" href="/explorer">Open Explorer</a>
+        <a class="btn secondary" href="/api/oracle">View Oracle</a>
+        <a class="btn secondary" href="/api/health">
+          Check <span data-status>WEB STATUS</span>
+        </a>
+      </div>
+
+      <div class="term-card" role="region" aria-label="Quick commands">
+        <div class="term-head">
+          <span>player_terminal — eggroll_silent_orchard</span>
+          <span class="term-dots" aria-hidden="true"><span></span><span></span><span></span></span>
+        </div>
+        <div class="term-line">
+          <span><span class="prompt">$</span> <span class="cmd" data-cmd="curl http://__HOST__:__WEB_PORT__/api/oracle">curl http://__HOST__:__WEB_PORT__/api/oracle</span></span>
+          <button class="copy" type="button">Copy</button>
+        </div>
+        <div class="term-line">
+          <span><span class="prompt">$</span> <span class="cmd" data-cmd="curl http://__HOST__:__WEB_PORT__/api/blocks">curl http://__HOST__:__WEB_PORT__/api/blocks</span></span>
+          <button class="copy" type="button">Copy</button>
+        </div>
+        <div class="term-line">
+          <span><span class="prompt">$</span> <span class="cmd" data-cmd="nc __HOST__ __TCP_PORT__">nc __HOST__ __TCP_PORT__</span></span>
+          <button class="copy" type="button">Copy</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect" aria-labelledby="surface-h">
+      <div class="sect-head">
+        <h2 id="surface-h"><span class="tag">player surface</span>Five quiet panels</h2>
+        <span class="meta">// route map · v1</span>
+      </div>
+
+      <div class="cards">
+        <article class="card" tabindex="0">
+          <div class="card-top">
+            <h3>Explorer</h3>
+            <span class="badge online">online</span>
+          </div>
+          <p>Rollup batch headers, grove commitments, and validator quote bindings.</p>
+          <div class="endpoint">
+            <span data-cmd="GET /explorer">GET /explorer</span>
+            <button class="copy" type="button">Copy</button>
+          </div>
+        </article>
+
+        <article class="card" tabindex="0">
+          <div class="card-top">
+            <h3>Oracle</h3>
+            <span class="badge online">online</span>
+          </div>
+          <p>Public oracle bundle: validator quotes, sealed notes, basket commitments, packed layouts, finality envelopes.</p>
+          <div class="endpoint">
+            <span data-cmd="GET /api/oracle">GET /api/oracle</span>
+            <button class="copy" type="button">Copy</button>
+          </div>
+        </article>
+
+        <article class="card" tabindex="0">
+          <div class="card-top">
+            <h3>Vault Gateway</h3>
+            <span class="badge standby">standby</span>
+          </div>
+          <p>TCP relay for sealed-note calldata. Echo window stays quiet until a matching envelope arrives.</p>
+          <div class="endpoint">
+            <span data-cmd="nc __HOST__ __TCP_PORT__">nc __HOST__ __TCP_PORT__</span>
+            <button class="copy" type="button">Copy</button>
+          </div>
+        </article>
+
+        <article class="card" tabindex="0">
+          <div class="card-top">
+            <h3>Orchard Claim</h3>
+            <span class="badge online">online</span>
+          </div>
+          <p>Submit a basket proof to the airdrop console. Weights and target are published with the oracle.</p>
+          <div class="endpoint">
+            <span data-cmd="POST /api/claim">POST /api/claim</span>
+            <button class="copy" type="button">Copy</button>
+          </div>
+        </article>
+
+        <article class="card" tabindex="0">
+          <div class="card-top">
+            <h3>Validator Console</h3>
+            <span class="badge online">online</span>
+          </div>
+          <p>Sequencer admin gate. Tokens are validated against the published validator key.</p>
+          <div class="endpoint">
+            <span data-cmd="POST /api/admin">POST /api/admin</span>
+            <button class="copy" type="button">Copy</button>
+          </div>
+        </article>
+
+        <article class="card" tabindex="0">
+          <div class="card-top">
+            <h3>Finality Feed</h3>
+            <span class="badge feed">stream</span>
+          </div>
+          <p>Fast finality envelopes are sealed under a quiet epoch signer. Watch the bloom timing.</p>
+          <div class="endpoint">
+            <span data-cmd="GET /api/blocks">GET /api/blocks</span>
+            <button class="copy" type="button">Copy</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <span><span class="pulse">●</span> EggRoll Silent Orchard · player surface</span>
+      <span>No source served · no secrets in public surface</span>
+      <span>v1 · <a href="/explorer">/explorer</a> · <a href="/api/health">/api/health</a></span>
+    </footer>
+  </div>
+
+  <script src="{{ url_for('static', filename='app.js') }}" defer></script>
+</body>
+</html>

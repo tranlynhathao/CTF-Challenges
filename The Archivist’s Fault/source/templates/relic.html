@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<header class="page-head">
+  <div><span class="codename">SEAL-V</span><h2 class="title">Sealed Record</h2></div>
+  <span class="meta">artifact :: aes-gcm</span>
+</header>
+{% with intro="Transport fields only. The key schedule lives in the public handout." %}
+  {% include "sealed.html" %}
+{% endwith %}
+{% endblock %}

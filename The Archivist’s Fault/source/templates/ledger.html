@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<header class="page-head">
+  <div><span class="codename">NODE-K</span><h2 class="title">Public Ledger</h2></div>
+  <span class="meta">master plate :: published</span>
+</header>
+<section class="module">
+  <div class="module-head"><span class="lbl">PUBLIC_KEY</span><span class="ix">params</span></div>
+  <div class="module-body">
+    <dl class="kv">
+      <dt>n</dt><dd><pre class="scroll">{{ n }}</pre></dd>
+      <dt>e</dt><dd><code>{{ e }}</code></dd>
+      <dt>k_bytes</dt><dd><code>{{ k }}</code></dd>
+      <dt>domain_hex</dt><dd><code>{{ domain_hex }}</code></dd>
+    </dl>
+  </div>
+</section>
+<section class="module">
+  <div class="module-head"><span class="lbl">SLIP_FORMAT</span><span class="ix">protocol</span></div>
+  <div class="module-body">
+    <p>Each slip is a small object encoded in canonical JSON, signed by the master plate, and delivered as <code class="inline-code">b64u(canonical_json) "." b64u(seal[k_bytes])</code>.</p>
+    <p>The verifier normalizes the payload bytes before checking the seal. Reorderings, extra keys, or non-canonical whitespace fail verification. The exact wording the inner gate accepts is held privately; reading-room slips do not satisfy it.</p>
+  </div>
+</section>
+<section class="module">
+  <div class="module-head"><span class="lbl">AUDITOR_NOTES</span><span class="ix">reference</span></div>
+  <div class="module-body">
+    <p>Some plate rubbings remain archived in the maintenance channel. Inquire there if a record is missing.</p>
+    <p>Relic transport fields are public; the key schedule is not indexed on this page.</p>
+    <p>Retired records are retained for auditors but are not part of any active route.</p>
+  </div>
+</section>
+{% endblock %}

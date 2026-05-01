@@ -1,0 +1,9 @@
+name: The Archivist's Fault
+description: A sealed archive issues visitor slips. Present the right slip at the inner gate.
+connection:
+  web: http://HOST:18080
+  tcp: nc HOST 31337
+files:
+  - public/chall.py
+notes:
+  - The number of recoverable records is not disclosed.

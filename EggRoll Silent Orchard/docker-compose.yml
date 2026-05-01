@@ -1,0 +1,33 @@
+services:
+  eggroll-silent-orchard:
+    build: .
+    container_name: eggroll-silent-orchard
+    restart: unless-stopped
+    ports:
+      - "28080:8080"
+      - "41337:31337"
+    environment:
+      FLAG_CBJS_WEB: "CBJS{silent_orchard_batch_receipt_under_moonlight}"
+      FLAG_CBJS_PWN: "CBJS{vault_murmur_echoing_beneath_the_old_gateway}"
+      FLAG_EGG_AIRDROP: "EGG{quiet_basket_blooming_beyond_the_orchard_gate}"
+      FLAG_EGG_CUSO: "EGG{hollow_grove_hidden_between_validator_stones}"
+      FLAG_EGG_BD: "EGG{sleepy_epoch_written_before_the_bloom_faded}"
+      CHALLENGE_SEED: "eggroll-silent-orchard-v1"
+      PUBLIC_TCP_PORT: "41337"
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONUNBUFFERED: "1"
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    read_only: false
+    tmpfs:
+      - /tmp:size=16m,mode=1777
+    mem_limit: 256m
+    pids_limit: 128
+    healthcheck:
+      test: ["CMD-SHELL", "python3 -c \"import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8080/api/health',timeout=3).read() else 1)\""]
+      interval: 15s
+      timeout: 3s
+      retries: 5
+      start_period: 8s

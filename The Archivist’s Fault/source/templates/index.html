@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <div class="hero-text">
+    <span class="hero-mark">CHALLENGE :: CRYPTO</span>
+    <h1>The Archivist's<br><span class="bracket">[</span><span class="accent">FAULT</span><span class="bracket">]</span></h1>
+    <p class="subtitle">Sealed records, a quiet ledger, and a gate that opens for the right slip.</p>
+    <div class="console" aria-hidden="true">
+      <div class="console-line">dojo-node :: online</div>
+      <div class="console-line">ledger :: open</div>
+      <div class="console-line cur">objective :: clear the inner gate</div>
+    </div>
+    <div class="cta-row">
+      <a class="btn" href="{{ url_for('vault') }}">Inner Gate</a>
+      <a class="btn btn-ghost" href="{{ url_for('login') }}">Request Slip</a>
+    </div>
+  </div>
+  <div class="hero-art" aria-hidden="true">
+    <svg viewBox="0 0 400 420" preserveAspectRatio="xMidYMid meet">
+      <defs>
+        <radialGradient id="cj-glow" cx="50%" cy="55%" r="55%">
+          <stop offset="0%" stop-color="#f03a5f" stop-opacity=".35"/>
+          <stop offset="65%" stop-color="#d7264e" stop-opacity=".04"/>
+          <stop offset="100%" stop-color="#d7264e" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <circle cx="200" cy="230" r="180" fill="url(#cj-glow)"/>
+      <g stroke="#f03a5f" stroke-width="1.6" fill="none" opacity=".55">
+        <path d="M40 92 L360 92 L354 80 L46 80 Z" fill="#f03a5f" opacity=".75"/>
+        <path d="M58 116 L342 116" stroke-width="2.2"/>
+        <path d="M76 116 L76 400" stroke-width="2.2"/>
+        <path d="M324 116 L324 400" stroke-width="2.2"/>
+      </g>
+      <line x1="86" y1="374" x2="332" y2="124" stroke="#d7264e" stroke-width="2" opacity=".4"/>
+      <g transform="translate(200 236)">
+        <circle r="92" stroke="#f03a5f" stroke-width=".8" fill="none" opacity=".35"/>
+        <circle r="64" stroke="#d7264e" stroke-width=".9" fill="none" opacity=".5"/>
+        <g fill="#f03a5f"><path d="M0 -50 L13 -18 L50 0 L13 18 L0 50 L-13 18 L-50 0 L-13 -18 Z"/></g>
+        <circle r="6" fill="#07070b"/>
+        <circle r="2.5" fill="#f7c6d1"/>
+      </g>
+    </svg>
+  </div>
+</section>
+<div class="section-eyebrow"><span>// Modules</span></div>
+<section class="tile-grid">
+  <a class="tile" href="{{ url_for('ledger') }}">
+    <span class="tile-codename">NODE-K</span>
+    <span class="tile-name">Public Ledger</span>
+    <span class="tile-desc">Master plate &mdash; modulus, exponent, slip protocol.</span>
+    <span class="tile-arrow">&rarr;</span>
+  </a>
+  <a class="tile" href="{{ url_for('login') }}">
+    <span class="tile-codename">CHAN-S</span>
+    <span class="tile-name">Issue Channel</span>
+    <span class="tile-desc">Stamp a reading-room slip in your name.</span>
+    <span class="tile-arrow">&rarr;</span>
+  </a>
+  <a class="tile" href="{{ url_for('vault') }}">
+    <span class="tile-codename">GATE-R</span>
+    <span class="tile-name">Inner Gate</span>
+    <span class="tile-desc">Present a sealed slip. The gatekeeper compares it byte for byte.</span>
+    <span class="tile-arrow">&rarr;</span>
+  </a>
+</section>
+{% endblock %}

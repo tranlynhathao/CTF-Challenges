@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{ title }} :: {{ subtitle }}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<div class="deco deco-br" aria-hidden="true">
+  <svg viewBox="0 0 120 120" preserveAspectRatio="xMidYMid meet">
+    <g transform="rotate(-12 60 60)">
+      <path d="M60 6 L72 44 L114 60 L72 76 L60 114 L48 76 L6 60 L48 44 Z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+      <circle cx="60" cy="60" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    </g>
+  </svg>
+</div>
+<header class="topbar">
+  <a class="brand" href="{{ url_for('index') }}">
+    <svg class="brand-mark" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 1.5 L14.6 9.4 L22.5 12 L14.6 14.6 L12 22.5 L9.4 14.6 L1.5 12 L9.4 9.4 Z" fill="currentColor"/>
+    </svg>
+    <span class="brand-text"><b>ARCHIVE</b><span class="brand-sep">::</span><span>SEAL_PLATE</span></span>
+  </a>
+  <div class="hud">
+    <div class="hud-pill"><span>NODE</span><b>DOJO-01</b></div>
+    <div class="hud-pill"><span>STATUS</span><b><i class="dot"></i>SEALED</b></div>
+  </div>
+</header>
+<nav class="rail" aria-label="primary">
+  <a href="{{ url_for('index') }}" class="{{ 'active' if active=='home' else '' }}">RULES</a><span class="rail-sep">/</span>
+  <a href="{{ url_for('ledger') }}" class="{{ 'active' if active=='ledger' else '' }}">LEDGER</a><span class="rail-sep">/</span>
+  <a href="{{ url_for('login') }}" class="{{ 'active' if active=='login' else '' }}">VISITOR_SLIP</a><span class="rail-sep">/</span>
+  <a href="{{ url_for('vault') }}" class="{{ 'active' if active=='vault' else '' }}">VAULT</a>
+</nav>
+<main>{% block content %}{% endblock %}</main>
+<footer class="bottombar">
+  <span>// archive // dojo node // local-only build</span>
+  <span class="corner">{{ subtitle|upper }} ::</span>
+</footer>
+</body>
+</html>

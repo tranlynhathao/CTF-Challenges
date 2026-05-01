@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<header class="page-head">
+  <div><span class="codename">RES-X</span><h2 class="title">Unindexed Margin</h2></div>
+  <span class="meta">restricted residue stream</span>
+</header>
+<section class="module">
+  <div class="module-head"><span class="lbl">MARGIN_STREAM</span><span class="ix">unindexed</span></div>
+  <div class="module-body">
+    <p>Recover the hidden 128-bit secret <code class="inline-code">x</code> from the published top bits, then derive the entry key.</p>
+    <dl class="kv">
+      <dt>ledger_prime</dt><dd><code>{{ ledger_prime }}</code></dd>
+      <dt>shift</dt><dd><code>{{ shift }} (low bits hidden)</code></dd>
+      <dt>relation</dt><dd><code>top_i = ((a_i &middot; x + b_i) mod ledger_prime) &gt;&gt; shift</code></dd>
+    </dl>
+    <label class="k">samples</label>
+    <div class="bl-wrap">
+      <table class="bl-table">
+        <thead><tr><th>i</th><th>a</th><th>b</th><th>top</th></tr></thead>
+        <tbody>
+        {% for s in samples %}
+          <tr><td>{{ loop.index0 }}</td><td>{{ s.a }}</td><td>{{ s.b }}</td><td>{{ s.top }}</td></tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+{% include "sealed.html" %}
+{% endblock %}

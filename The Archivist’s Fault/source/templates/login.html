@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<header class="page-head">
+  <div><span class="codename">CHAN-S</span><h2 class="title">Issue Channel</h2></div>
+  <span class="meta">visitor slip :: stamp on demand</span>
+</header>
+<section class="module">
+  <div class="module-head"><span class="lbl">REQUEST_SLIP</span><span class="ix">channel</span></div>
+  <div class="module-body">
+    <p>Type a name; the clerk stamps a reading-room slip and returns the canonical payload and sealed token.</p>
+    <form method="post">
+      <label class="k">visitor name</label>
+      <input type="text" name="name" maxlength="28" value="{{ name }}" placeholder="reader" required>
+      <div style="margin-top:1rem"><button class="btn" type="submit">Stamp Slip</button></div>
+    </form>
+  </div>
+</section>
+{% if error %}
+<section class="module">
+  <div class="module-head"><span class="lbl">SLIP_REJECTED</span><span class="ix">err</span></div>
+  <div class="module-body">
+    <div class="deny">REJECT</div>
+    <div class="term-line">{{ error }}</div>
+  </div>
+</section>
+{% elif token %}
+<section class="module">
+  <div class="module-head"><span class="lbl">SLIP_ISSUED</span><span class="ix">archive-slip-v2</span></div>
+  <div class="module-body">
+    <label class="k">canonical payload</label>
+    <pre>{{ payload_text }}</pre>
+    <label class="k">sealed token</label>
+    <pre>{{ token }}</pre>
+    <div class="term-line muted">scope :: reading-room</div>
+  </div>
+</section>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,84 @@
+# Private organizer material
+**/solution/
+**/info.yml.txt
+**/info.yml
+
+# Environment files
+**/.env
+**/.env.*
+!**/.env.example
+
+# Generated release/build artifacts
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+dist/
+release/
+build/
+
+# Python caches and local environments
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+env/
+
+# Sage/math temp
+*.sage.py
+.sage/
+.ipynb_checkpoints/
+
+# C/build artifacts
+*.o
+*.out
+*.so
+*.dylib
+*.exe
+a.out
+core
+core.*
+
+# OS/editor/local tool files
+.DS_Store
+.AppleDouble
+.LSOverride
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.claude/
+
+# Logs
+*.log
+logs/
+
+# Local secret scratch
+**/flags.txt
+**/flag.txt
+**/*flag*.txt
+**/secrets/
+**/secret/
+**/*secret*
+**/*private*
+
+# Explicit public release allow-list exceptions
+!**/public/
+!**/public/chall.py
+!**/source/
+!**/source/chall.py
+!**/source/static/
+!**/source/static/**
+!**/source/templates/
+!**/source/templates/**
+!**/Dockerfile
+!**/docker-compose.yml
+!**/requirements.txt
+!**/README.md
+!**/info.public.yml.txt
