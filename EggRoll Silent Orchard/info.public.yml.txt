@@ -1,8 +1,0 @@
-name: EggRoll Silent Orchard
-description: A cryptographic L2 rollup challenge with a quiet orchard of validator, vault, airdrop, and finality artifacts.
-connection:
-  web: http://HOST:28080
-  remote: nc HOST 41337
-handout:
-  - public/chall.py
-  - this sanitized info file

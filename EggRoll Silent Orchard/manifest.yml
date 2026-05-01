@@ -1,0 +1,32 @@
+name: "EggRoll Silent Orchard"
+author: "CBJS"
+category: "Crypto"
+difficulty: "medium"
+description: |
+  A quiet L2 rollup season. Read the orchard, listen to the gateway.
+connections:
+  - name: EggRoll Silent Orchard (web)
+    url: "https://eggroll-silent-orchard.league.cyberjutsu-lab.tech/"
+  - name: EggRoll Silent Orchard (vault gateway)
+    url: "nc eggroll-silent-orchard.league.cyberjutsu-lab.tech 41337"
+flags:
+  - type: flag
+    id: flag_validator
+    content: "CBJS{silent_orchard_batch_receipt_under_moonlight}"
+  - type: flag
+    id: flag_vault
+    content: "CBJS{vault_murmur_echoing_beneath_the_old_gateway}"
+  - type: egg
+    id: egg_orchard
+    content: "EGG{quiet_basket_blooming_beyond_the_orchard_gate}"
+  - type: egg
+    id: egg_packed
+    content: "EGG{hollow_grove_hidden_between_validator_stones}"
+  - type: egg
+    id: egg_finality
+    content: "EGG{sleepy_epoch_written_before_the_bloom_faded}"
+files:
+  - public/chall.py
+tags:
+  - crypto
+  - rollup

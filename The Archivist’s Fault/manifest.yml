@@ -1,0 +1,24 @@
+name: "The Archivist's Fault"
+author: "CBJS"
+category: "Crypto"
+difficulty: "easy"
+description: |
+  Walk the dojo, present the right slip at the inner gate.
+connections:
+  - name: Web Desk
+    url: "https://archivists-fault.league.cyberjutsu-lab.tech/"
+  - name: Seal Plate (TCP)
+    url: "nc archivists-fault.league.cyberjutsu-lab.tech 31337"
+flags:
+  - type: flag
+    content: "CBJS{black_ledger_residues_open_the_inner_vault}"
+  - type: egg
+    id: egg_1
+    content: "EGG{relic_paths_bind_primes_to_drawers}"
+  - type: egg
+    id: egg_2
+    content: "EGG{lll_reads_the_black_ledger_margin}"
+files:
+  - "public/chall.py"
+tags:
+  - crypto
